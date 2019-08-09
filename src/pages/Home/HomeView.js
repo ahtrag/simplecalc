@@ -19,6 +19,9 @@ const Home = () => {
       <CssBaseline />
       <AppBar position="static">
         <Tabs
+          classes={{
+            flexContainer: classes.tabs
+          }}
           value={value}
           onChange={handleChange}
           aria-label="simple tabs example"
@@ -28,6 +31,7 @@ const Home = () => {
           <Tab label="Fibonacci" {...idProps(2)} />
         </Tabs>
       </AppBar>
+
       <TabPanel value={value} index={0}>
         <Calculator />
       </TabPanel>
@@ -52,6 +56,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper
+  },
+  tabs: {
+    justifyContent: "center"
   }
 }));
 

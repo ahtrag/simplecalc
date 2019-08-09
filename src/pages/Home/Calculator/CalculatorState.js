@@ -52,13 +52,18 @@ const ContextProvider = ({ children }) => {
   };
 
   const toggleOperator = operator => {
-    const oldOperator = state.operator ? state.operator : operator;
+    if (!state.num1 && !state.operator && !state.num2) {
+      const resultValue = state.resultValue;
+      dispatch({ type: "INSERT_NUMBER", key: "num1", value: resultValue });
+    } else {
+      dispatch({
+        type: "INSERT_NUMBER",
+        key: "resultValue",
+        value: state.num2 ? state.num2 : state.num1
+      });
+    }
 
-    dispatch({
-      type: "INSERT_NUMBER",
-      key: "resultValue",
-      value: state.num2 ? state.num2 : state.num1
-    });
+    const oldOperator = state.operator ? state.operator : operator;
     dispatch({ type: "INSERT_OPERATOR", value: operator });
 
     let number1 = parseInt(state.num1);
